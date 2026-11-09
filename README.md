@@ -2,7 +2,7 @@
 
 CTIS 465 Microservice Development with .NET project.
 
-Team members: _add names here_
+Team members: Ilgın Tandoğan, Yiğitcan Karagöz, Kerem Sönmez
 
 ## Projects
 
