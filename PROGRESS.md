@@ -36,7 +36,7 @@ Proje adımları (`docs/Project.pdf`):
 - [x] 10. MediatR IoC kaydı (`Program.cs`, rehberdeki Way 2)
 - [x] 11. `Templates` klasörü need4code'dan indirildi, `Calories.API/Templates` altına kondu ve Exclude From Project yapıldı (csproj'da `Remove="Templates\**"` satırları)
 - [x] 12. Controller'lar (rehberdeki RolesController şablon çıktısıyla aynı yapıda): Categories, Foods, Meals
-- [ ] 13. (Kullanıcı Swagger ile deneyecek; komut satırı testleri geçti) Endpoint'leri Swagger ile test et (önce `api/SeedDb`)
+- [x] 13. Endpoint'leri Swagger ile test et (önce `api/SeedDb`)
 - [ ] GitHub'a push et ve repo linkini ekip üyelerinin isimleriyle hocaya mail at
 
 ## Final: Son ürün (yüzde 35)
@@ -54,3 +54,4 @@ Proje adımları (`docs/Project.pdf`):
 - 2026-11-09: Rehberde birebir olmayanlar kaldırıldı: Meal'daki `TotalCaloriesR` (Sum), Meal tekrar kontrolündeki tarih koşulu (artık rehberdeki gibi sadece başlık), `?? DateTime.Now` (rehberdeki `.Value` kullanıldı), seed'deki fazladan `SaveChanges`. Tarih formatı rehberdeki `"MM/dd/yyyy HH:mm.ss"` ile aynı yapıldı. Program.cs MediatR yorumları rehberdeki tam metne çevrildi.
 - 2026-11-09: README eklendi, commit ve push yapıldı.
 - 2026-11-09: Tarih formatı `"MM/dd/yyyy HH:mm:ss"` yapıldı (rehberdeki `HH:mm.ss` yazım hatası, kullanıcı onayıyla). Templates klasörü eklendi (adım 11).
+- 2026-11-19: Swagger'da endpoint'ler test edildi, çalışıyor (adım 13).
