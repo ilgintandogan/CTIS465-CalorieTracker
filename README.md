@@ -53,4 +53,4 @@ Example request bodies:
 { "title": "Lunch Plate", "mealType": 1, "mealDate": "2026-11-10T12:30:00", "notes": "", "foodIds": [1, 3] }
 ```
 
-Step-by-step progress is tracked in [PROGRESS.md](PROGRESS.md).
+
