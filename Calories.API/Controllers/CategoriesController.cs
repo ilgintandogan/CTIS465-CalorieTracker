@@ -5,7 +5,7 @@ using MediatR;
 using CORE.Models;
 using Calories.APP.Features.Categories;
 
-//Generated from Custom Microservices Template.
+
 namespace Calories.API.Controllers
 {
     [Route("api/[controller]")]
@@ -80,8 +80,7 @@ namespace Calories.API.Controllers
                     var response = await _mediator.Send(request);
                     if (response.IsSuccessful)
                     {
-                        //return CreatedAtAction(nameof(Get),
-                        //    new { id = response.Id }, response);
+                        
                         return Ok(response);
                     }
                     ModelState.AddModelError("CategoriesPost", response.Message);
@@ -112,7 +111,7 @@ namespace Calories.API.Controllers
                     var response = await _mediator.Send(request);
                     if (response.IsSuccessful)
                     {
-                        //return NoContent();
+                       
                         return Ok(response);
                     }
                     ModelState.AddModelError("CategoriesPut", response.Message);
