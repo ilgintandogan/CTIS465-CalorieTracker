@@ -5,6 +5,7 @@ using MediatR;
 using CORE.Models;
 using Calories.APP.Features.Meals;
 
+
 namespace Calories.API.Controllers
 {
     [Route("api/[controller]")]
@@ -76,6 +77,7 @@ namespace Calories.API.Controllers
                     var response = await _mediator.Send(request);
                     if (response.IsSuccessful)
                     {
+
                         return Ok(response);
                     }
                     ModelState.AddModelError("MealsPost", response.Message);
@@ -105,6 +107,7 @@ namespace Calories.API.Controllers
                     var response = await _mediator.Send(request);
                     if (response.IsSuccessful)
                     {
+
                         return Ok(response);
                     }
                     ModelState.AddModelError("MealsPut", response.Message);
@@ -133,6 +136,7 @@ namespace Calories.API.Controllers
                     .Send(new MealRemoveRequest() { Id = id });
                 if (response.IsSuccessful)
                 {
+
                     return Ok(response);
                 }
                 ModelState.AddModelError("MealsDelete", response.Message);
