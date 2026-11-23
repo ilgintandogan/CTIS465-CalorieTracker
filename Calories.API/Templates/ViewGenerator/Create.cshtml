@@ -14,8 +14,8 @@
 
 @{
 @:@@{
-    @:var containerDivClass = "container"; // "container-fluid" can be used for full width
-    @:var dateTimePickerClass = "datetimepicker"; // "jquery-datetimepicker" must be added as client side library
+    @:var containerDivClass = "container";
+    @:var dateTimePickerClass = "datetimepicker";
 @:}
     if (Model.IsPartialView)
     {
@@ -182,12 +182,8 @@ if (dateTimePickerFound)
     @:<script>
         @:$(function () {
             @:$(".datetimepicker").datetimepicker({
-                @:// for using only date
                 @:timepicker: false,
                 @:format: 'm/d/Y'
-                @:// for using date with time
-                @:// timepicker: true,
-                @:// format: 'm/d/Y H:i'
             @:});
         @:});
     @:</script>

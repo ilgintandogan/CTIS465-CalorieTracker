@@ -18,7 +18,6 @@ using CORE.Services;
     }
 }
 
-// Generated from Custom MVC Template.
 
 namespace @Model.ControllerNamespace
 {
@@ -76,7 +75,6 @@ namespace @Model.ControllerNamespace
 }
     public class @Model.ControllerName : Controller
     {
-        // Service injections:
         private readonly @serviceAbstractType @("_" + serviceAbstractName);
 @foreach (var relatedProperty in relatedProperties.Keys)
 {
@@ -84,7 +82,6 @@ namespace @Model.ControllerNamespace
 }
 
         /* Can be uncommented and used for many to many relationships, "entity" may be replaced with the related entity name in the controller and views. */
-        //private readonly IService<EntityRequest, EntityResponse> _EntityService;
 
         public @(Model.ControllerName + "(\n\t\t\t" + serviceAbstractType + " " + serviceAbstractName)
 @foreach (var relatedProperty in relatedProperties.Keys)
@@ -93,7 +90,6 @@ namespace @Model.ControllerNamespace
 }
 
             /* Can be uncommented and used for many to many relationships, "entity" may be replaced with the related entity name in the controller and views. */
-            //, IService<EntityRequest, EntityResponse> EntityService
         )
         {
             @("_" + serviceAbstractName) = @serviceAbstractName;
@@ -103,7 +99,6 @@ namespace @Model.ControllerNamespace
 }
 
             /* Can be uncommented and used for many to many relationships, "entity" may be replaced with the related entity name in the controller and views. */
-            //_EntityService = EntityService;
         }
 
         private void SetViewData()
@@ -113,7 +108,6 @@ namespace @Model.ControllerNamespace
             They carry extra data other than the model from a controller action to its view, or between views.
             */
 
-            // Related items service logic to set ViewData (Id and Name parameters may need to be changed in the SelectList constructor according to the model):
 @{
     foreach (var property in relatedProperties.Values)
     {
@@ -122,7 +116,6 @@ namespace @Model.ControllerNamespace
 }           
             
             /* Can be uncommented and used for many to many relationships, "entity" may be replaced with the related entity name in the controller and views. */
-            //ViewBag.EntityIds = new MultiSelectList(_EntityService.List(), "Id", "Name");
         }
 
         private void SetTempData(string message, string key = "Message")
@@ -134,111 +127,92 @@ namespace @Model.ControllerNamespace
             TempData[key] = message;
         }
 
-        // GET: @routePrefix
         public IActionResult Index()
         {
-            // Get collection service logic:
             var list = @("_" + serviceAbstractName).List();
-            return View(list); // return response collection as model to the Index view
+            return View(list);
         }
 
-        // GET: @routePrefix/Details/5
         public IActionResult Details(@primaryKeyShortTypeName id)
         {
-            // Get item service logic:
             var item = @("_" + serviceAbstractName).Single(id);
-            return View(item); // return response item as model to the Details view
+            return View(item);
         }
 
-        // GET: @routePrefix/Create
         public IActionResult Create()
         {
-            SetViewData(); // set ViewData dictionary to carry extra data other than the model to the view
-            return View(); // return Create view with no model
+            SetViewData();
+            return View();
         }
 
-        // POST: @routePrefix/Create
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(@requestType @Model.ModelVariable)
         {
-            if (ModelState.IsValid) // check data annotation validation errors in the request
+            if (ModelState.IsValid)
             {
 @{
     if (!string.IsNullOrEmpty(primaryKeyType) && IsGuid(primaryKeyType))
     {
                 @:@(Model.ModelVariable).@primaryKeyName = Guid.NewGuid();
     }
-                @:// Insert item service logic:
                 @:var response = @("_" + serviceAbstractName).Add(@Model.ModelVariable);
                 @:if (response.IsSuccessful)
 }  
                 {
-                    SetTempData(response.Message); // set TempData dictionary to carry the message to the redirected action's view
-                    return RedirectToAction(nameof(Details), new { id = response.Id }); // redirect to Details action with id parameter as response.Id route value
+                    SetTempData(response.Message);
+                    return RedirectToAction(nameof(Details), new { id = response.Id });
                 }
-                ModelState.AddModelError("", response.Message); // to display service error message in the validation summary of the view
+                ModelState.AddModelError("", response.Message);
             }
-            SetViewData(); // set ViewData dictionary to carry extra data other than the model to the view
-            return View(@Model.ModelVariable); // return request as model to the Create view
+            SetViewData();
+            return View(@Model.ModelVariable);
         }
 
-        // GET: @routePrefix/Edit/5
         public IActionResult Edit(@primaryKeyShortTypeName id)
         {
-            // Get item to edit service logic:
             var item = @("_" + serviceAbstractName).Edit(id);
-            SetViewData(); // set ViewData dictionary to carry extra data other than the model to the view
-            return View(item); // return request as model to the Edit view
+            SetViewData();
+            return View(item);
         }
 
-        // POST: @routePrefix/Edit
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Edit(@requestType @Model.ModelVariable)
         {
-            if (ModelState.IsValid) // check data annotation validation errors in the request
+            if (ModelState.IsValid)
             {
 @{
-                @:// Update item service logic:
                 @:var response = @("_" + serviceAbstractName).Update(@Model.ModelVariable);
                 @:if (response.IsSuccessful)
 }
                 {
-                    SetTempData(response.Message); // set TempData dictionary to carry the message to the redirected action's view
-                    return RedirectToAction(nameof(Details), new { id = response.Id }); // redirect to Details action with id parameter as response.Id route value
+                    SetTempData(response.Message);
+                    return RedirectToAction(nameof(Details), new { id = response.Id });
                 }
-                ModelState.AddModelError("", response.Message); // to display service error message in the validation summary of the view
+                ModelState.AddModelError("", response.Message);
             }
-            SetViewData(); // set ViewData dictionary to carry extra data other than the model to the view
-            return View(@Model.ModelVariable); // return request as model to the Edit view
+            SetViewData();
+            return View(@Model.ModelVariable);
         }
 
-        // GET: @routePrefix/Delete/5
         public IActionResult Delete(@primaryKeyShortTypeName id)
         {
-            // Get item to delete service logic:
             var item = @("_" + serviceAbstractName).Single(id);
-            return View(item); // return response item as model to the Delete view
+            return View(item);
         }
 
-        // POST: @routePrefix/Delete
         [HttpPost, ValidateAntiForgeryToken, ActionName("Delete")]
         public IActionResult DeleteConfirmed(@primaryKeyShortTypeName id)
         {
-            // Delete item service logic:
             var response = @("_" + serviceAbstractName).Remove(id);
-            SetTempData(response.Message); // set TempData dictionary to carry the message to the redirected action's view
-            return RedirectToAction(nameof(Index)); // redirect to the Index action
+            SetTempData(response.Message);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
 @functions
 {
-    // This function converts the primary key short type name to its nullable equivalent when possible. This is required to make
-    // sure that an HTTP 400 error is thrown when the user tries to access the edit, delete, or details action with null values.
     string GetNullableTypeName(string typeName, string shortTypeName)
     {
-        // The exceptions are caught because if for any reason the type is user defined, then the short type name will be used.
-        // In that case the user will receive a server error if null is passed to the edit, delete, or details actions.
         Type primaryKeyType = null;
         try
         {

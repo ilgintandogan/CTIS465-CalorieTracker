@@ -5,7 +5,6 @@ using MediatR;
 using CORE.Models;
 using Calories.APP.Features.Meals;
 
-//Generated from Custom Microservices Template.
 namespace Calories.API.Controllers
 {
     [Route("api/[controller]")]
@@ -22,7 +21,6 @@ namespace Calories.API.Controllers
             _mediator = mediator;
         }
 
-        // GET: api/Meals
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -45,7 +43,6 @@ namespace Calories.API.Controllers
             }
         }
 
-        // GET: api/Meals/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -69,7 +66,6 @@ namespace Calories.API.Controllers
             }
         }
 
-        // POST: api/Meals
         [HttpPost]
         public async Task<IActionResult> Post(MealAddRequest request)
         {
@@ -80,8 +76,6 @@ namespace Calories.API.Controllers
                     var response = await _mediator.Send(request);
                     if (response.IsSuccessful)
                     {
-                        //return CreatedAtAction(nameof(Get),
-                        //    new { id = response.Id }, response);
                         return Ok(response);
                     }
                     ModelState.AddModelError("MealsPost", response.Message);
@@ -101,7 +95,6 @@ namespace Calories.API.Controllers
             }
         }
 
-        // PUT: api/Meals
         [HttpPut]
         public async Task<IActionResult> Put(MealUpdateRequest request)
         {
@@ -112,7 +105,6 @@ namespace Calories.API.Controllers
                     var response = await _mediator.Send(request);
                     if (response.IsSuccessful)
                     {
-                        //return NoContent();
                         return Ok(response);
                     }
                     ModelState.AddModelError("MealsPut", response.Message);
@@ -132,7 +124,6 @@ namespace Calories.API.Controllers
             }
         }
 
-        // DELETE: api/Meals/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -142,7 +133,6 @@ namespace Calories.API.Controllers
                     .Send(new MealRemoveRequest() { Id = id });
                 if (response.IsSuccessful)
                 {
-                    //return NoContent();
                     return Ok(response);
                 }
                 ModelState.AddModelError("MealsDelete", response.Message);

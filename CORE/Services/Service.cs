@@ -27,7 +27,6 @@ namespace CORE.Services
             Culture = "en-US";
         }
 
-        // return "Operation successful." message, otherwise return
         protected CommandResponse Success(int id, string message = default)
             => new CommandResponse(true, message ?? "Operation successful.", id);
 

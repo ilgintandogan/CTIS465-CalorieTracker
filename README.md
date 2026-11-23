@@ -45,10 +45,16 @@ The SQLite database file (`CaloriesDB.db`) is not stored in the repository, so i
 
 Example request bodies:
 
-```json
-// POST /api/Foods
-{ "name": "Broccoli", "servingDescription": "1 cup (91 g)", "calories": 31, "proteinGrams": 2.5, "isVegan": true, "categoryId": 4 }
+**POST /api/Foods**
 
-// POST /api/Meals  (mealType: 0 Breakfast, 1 Lunch, 2 Dinner, 3 Snack)
+```json
+{ "name": "Broccoli", "servingDescription": "1 cup (91 g)", "calories": 31, "proteinGrams": 2.5, "isVegan": true, "categoryId": 4 }
+```
+
+**POST /api/Meals**
+
+Meal types are 0 (Breakfast), 1 (Lunch), 2 (Dinner), and 3 (Snack).
+
+```json
 { "title": "Lunch Plate", "mealType": 1, "mealDate": "2026-11-10T12:30:00", "notes": "", "foodIds": [1, 3] }
 ```
