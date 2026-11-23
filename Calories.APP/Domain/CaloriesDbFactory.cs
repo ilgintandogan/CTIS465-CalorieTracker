@@ -4,20 +4,10 @@ using System.Globalization;
 
 namespace Calories.APP.Domain
 {
-    // Provides a factory for creating CaloriesDb instances at design time.
-    // This is used by Entity Framework (EF) tools such as
-    // migrations to construct the database context when the
-    // application is not running.
-    // This class may need to be created if there are any exceptions
-    // during Scaffolding.
     public class CaloriesDbFactory : IDesignTimeDbContextFactory<CaloriesDb>
     {
-        // The connection string in the configuration file
-        // (appsettings.json).
         const string CONNECTIONSTRING = "data source=CaloriesDB.db";
 
-        // Creates a new instance of the CaloriesDb type using the connection
-        // string. This method is called by EF tooling at design time.
         public CaloriesDb CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CaloriesDb>();
@@ -25,13 +15,10 @@ namespace Calories.APP.Domain
             return new CaloriesDb(optionsBuilder.Options);
         }
 
-        // Seeds the database tables with initial data (Optional).
         public void SeedDb()
         {
-            // Create a new instance of the CaloriesDb type:
             var db = CreateDbContext(null);
 
-            // Delete existing data:
             var mealFoods = db.MealFoods.ToList();
             db.MealFoods.RemoveRange(mealFoods);
             var meals = db.Meals.ToList();
@@ -41,8 +28,6 @@ namespace Calories.APP.Domain
             var categories = db.Categories.ToList();
             db.Categories.RemoveRange(categories);
 
-            // Reset identity columns (for SQLite):
-            // IDs will start from 1
             db.Database.ExecuteSqlRaw("UPDATE SQLITE_SEQUENCE " +
                 "SET SEQ=0 WHERE NAME='MealFoods'");
             db.Database.ExecuteSqlRaw("UPDATE SQLITE_SEQUENCE " +
@@ -52,8 +37,6 @@ namespace Calories.APP.Domain
             db.Database.ExecuteSqlRaw("UPDATE SQLITE_SEQUENCE " +
                 "SET SEQ=0 WHERE NAME='Categories'");
 
-            // Insert new data:
-            // Categories with Foods:
             db.Categories.Add(new Category
             {
                 Name = "Fruits",
@@ -113,9 +96,8 @@ namespace Calories.APP.Domain
                 }
             });
             db.Categories.Add(new Category { Name = "Vegetables" });
-            db.SaveChanges(); // commit changes to the database
+            db.SaveChanges();
 
-            // Meals with MealFoods:
             db.Meals.Add(new Meal
             {
                 Title = "Morning Bowl",

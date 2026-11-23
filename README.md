@@ -52,5 +52,3 @@ Example request bodies:
 // POST /api/Meals  (mealType: 0 Breakfast, 1 Lunch, 2 Dinner, 3 Snack)
 { "title": "Lunch Plate", "mealType": 1, "mealDate": "2026-11-10T12:30:00", "notes": "", "foodIds": [1, 3] }
 ```
-
-
